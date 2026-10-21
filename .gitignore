@@ -1,0 +1,6 @@
+/target
+/dist
+*.zip
+**/*.apk
+**/*.exe
+.DS_Store

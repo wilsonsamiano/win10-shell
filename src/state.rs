@@ -46,10 +46,17 @@ pub struct AppState {
     pub theme: String,
     pub accent: u32,
     pub shape: String,
+    /// `metro` is the flat Start screen. `aero` is Vista glass. Missing on old saves.
+    #[serde(default = "default_look")]
+    pub look: String,
     pub lat: f64,
     pub lon: f64,
     pub has_place: bool,
     pub next_id: u64,
+}
+
+fn default_look() -> String {
+    "metro".into()
 }
 
 impl Default for AppState {
@@ -82,6 +89,7 @@ impl Default for AppState {
             theme: "dark".into(),
             accent: 0x0078D7,
             shape: "rounded".into(),
+            look: default_look(),
             lat,
             lon,
             has_place: false,
@@ -104,6 +112,10 @@ impl AppState {
             }
             _ => true,
         }
+    }
+
+    pub fn aero(&self) -> bool {
+        self.look == "aero"
     }
 
     pub fn load() -> Self {
@@ -238,5 +250,21 @@ pub async fn fetch_text(url: &str) -> Option<String> {
             let _ = tx.send(body);
         });
         rx.await.ok().flatten()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn old_save_stays_on_metro() {
+        let raw = r#"{"tiles":[],"theme":"light","accent":30935,"shape":"square","lat":1.0,"lon":2.0,"has_place":true,"next_id":9}"#;
+        let state: AppState = serde_json::from_str(raw).unwrap();
+        assert_eq!(state.look, "metro");
+        assert!(!state.aero());
+        assert_eq!(state.theme, "light");
+        assert_eq!(state.next_id, 9);
+        assert!(state.has_place);
     }
 }

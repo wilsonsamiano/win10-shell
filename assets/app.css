@@ -162,3 +162,134 @@ input, select {
 @media (pointer: coarse) {
   .tools button, .bar button, .panel button { min-height: 44px; }
 }
+
+/* Vista Aero. The wallpaper sits behind the tiles so the blur has something to show. */
+.app.aero {
+  --fg: #fff;
+  --muted: rgba(255,255,255,.84);
+  color: #fff;
+  background:
+    radial-gradient(1100px 640px at 12% -8%, rgba(255,255,255,.42), transparent 56%),
+    radial-gradient(820px 520px at 100% 0%, rgba(var(--tint, 0, 120, 215), .62), transparent 52%),
+    radial-gradient(700px 480px at 70% 115%, rgba(8, 40, 80, .85), transparent 60%),
+    linear-gradient(180deg, #1d5b98 0%, #0d335f 46%, #071525 100%);
+}
+.app.aero.light {
+  background:
+    radial-gradient(1000px 560px at 18% -10%, rgba(255,255,255,.75), transparent 52%),
+    radial-gradient(760px 480px at 96% 4%, rgba(var(--tint, 0, 120, 215), .5), transparent 54%),
+    linear-gradient(180deg, #9fd0f4 0%, #5b97cb 42%, #2d6498 100%);
+}
+html:has(.app.aero),
+body:has(.app.aero),
+#main:has(.app.aero) {
+  background: #071525;
+}
+.app.aero .tile {
+  color: #fff;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,.62);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.46) 0%, rgba(255,255,255,.1) 41%, rgba(255,255,255,.02) 42%, rgba(0,0,0,.16) 100%),
+    linear-gradient(180deg, rgba(var(--tint, 0, 120, 215), .42), rgba(var(--tint, 0, 120, 215), .16));
+  -webkit-backdrop-filter: blur(18px) saturate(1.65);
+  backdrop-filter: blur(18px) saturate(1.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    inset 0 0 0 1px rgba(255,255,255,.22),
+    inset 0 -10px 18px rgba(0,0,0,.12),
+    0 1px 0 rgba(255,255,255,.28),
+    0 10px 24px rgba(0,0,0,.32);
+}
+.app.aero .tile::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 1px;
+  right: 1px;
+  top: 1px;
+  height: 46%;
+  border-radius: 6px 6px 46% 46%;
+  background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0));
+  pointer-events: none;
+}
+.app.aero .tile:active {
+  filter: none;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.62) 0%, rgba(255,255,255,.16) 46%, rgba(0,0,0,.08) 100%),
+    linear-gradient(180deg, rgba(var(--tint, 0, 120, 215), .55), rgba(var(--tint, 0, 120, 215), .28));
+}
+.app.aero .plate,
+.app.aero .clock-time,
+.app.aero .clock-date,
+.app.aero .tools {
+  z-index: 1;
+}
+.app.aero .label,
+.app.aero .clock-time,
+.app.aero .clock-date {
+  text-shadow: 0 1px 2px rgba(0,0,0,.55);
+}
+.app.aero .plate {
+  background: rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.38);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
+}
+.app.aero .tools button {
+  background: rgba(0,0,0,.28);
+  color: #fff;
+  border-radius: 3px;
+}
+.app.aero .bar {
+  left: 10px;
+  right: 10px;
+  bottom: 8px;
+  border-radius: 8px;
+  justify-content: flex-end;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.32), rgba(255,255,255,.06) 42%, rgba(0,0,0,.08)),
+    rgba(var(--tint, 0, 120, 215), .28);
+  border: 1px solid rgba(255,255,255,.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.7),
+    0 8px 20px rgba(0,0,0,.28);
+}
+.app.aero .bar button {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,.45);
+}
+.app.aero .panel {
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.05)),
+    rgba(7, 22, 42, .62);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  backdrop-filter: blur(22px) saturate(1.4);
+}
+.app.aero .row button,
+.app.aero .list button {
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,.42);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.38), rgba(255,255,255,.05) 46%, rgba(0,0,0,.08)),
+    rgba(var(--tint, 0, 120, 215), .4);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+.app.aero input {
+  color: #fff;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.42);
+  border-radius: 3px;
+}
+.app.aero .notice {
+  color: #fff;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.4);
+  background: rgba(8, 18, 36, .55);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.app.aero .list .item { border-bottom-color: rgba(255,255,255,.28); }

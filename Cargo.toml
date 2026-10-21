@@ -1,6 +1,6 @@
 [package]
 name = "win10-shell"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Windows Phone style Start screen. One Rust app for Linux, macOS, Windows, Android, iOS, and the browser."
 license = "MIT"

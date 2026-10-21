@@ -2,12 +2,13 @@
 
 Windows Phone style Start screen, written in Rust. One codebase for Linux, macOS, Windows, Android, iOS, and a browser PWA.
 
-This is public beta 0.1.0. The Android launcher you already use stays in its own repo. This is the rewrite.
+This is public beta 0.1.1. The Android launcher you already use stays in its own repo. This is the rewrite.
 
 ## What it does
 
 - Live clock tile, small / medium / wide tiles, pin, reorder, unpin
 - Dark, light, and sunrise-to-sunset themes
+- Metro (flat) or Aero (Vista glass) look, switched in Settings
 - Accent colors and icon shapes
 - Settings, diagnostics, and a Buy Me a Coffee link
 - In-app update check against [latest.json](latest.json) on this repo

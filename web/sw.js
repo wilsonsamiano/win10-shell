@@ -1,4 +1,4 @@
-const CACHE = "win10-shell-0.1.0";
+const CACHE = "win10-shell-0.1.1";
 const FILES = [
   "./",
   "./index.html",

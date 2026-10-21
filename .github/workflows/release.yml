@@ -79,10 +79,12 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           prerelease: true
-          name: Win10 Shell 0.1.0 beta
+          name: Win10 Shell 0.1.1 beta
           fail_on_unmatched_files: false
           body: |
-            Win10 Shell 0.1.0 beta. One Rust Start screen.
+            Win10 Shell 0.1.1 beta. One Rust Start screen.
+
+            Settings → Look → Aero for see-through Vista glass tiles. Metro is the flat Start screen.
 
             - Linux x64: `win10-shell-linux-x64` (needs WebKitGTK 4.1)
             - Windows x64: `win10-shell-windows-x64.exe` (WebView2, already on Windows 11)
@@ -110,4 +112,5 @@ jobs:
           gh api --method POST "/repos/${{ github.repository }}/pages" -f build_type=workflow \
             || gh api --method PUT "/repos/${{ github.repository }}/pages" -f build_type=workflow
       - id: deploy
+        continue-on-error: true
         uses: actions/deploy-pages@v4

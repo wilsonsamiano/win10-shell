@@ -36,14 +36,24 @@ fn App() -> Element {
     });
 
     let dark = STATE.read().dark(*NOW.read());
-    let accent = format!("#{:06X}", STATE.read().accent);
+    let aero = STATE.read().aero();
+    let accent_n = STATE.read().accent;
+    let accent = format!("#{:06X}", accent_n);
+    let tint = format!("{}, {}, {}", (accent_n >> 16) & 255, (accent_n >> 8) & 255, accent_n & 255);
     let page = *PAGE.read();
+    let mut class_name = String::from("app");
+    if !dark {
+        class_name.push_str(" light");
+    }
+    if aero {
+        class_name.push_str(" aero");
+    }
 
     rsx! {
         style { {include_str!("../assets/app.css")} }
         div {
-            class: if dark { "app" } else { "app light" },
-            style: "--accent: {accent};",
+            class: "{class_name}",
+            style: "--accent: {accent}; --tint: {tint};",
             if page == "all" {
                 AllApps {}
             } else if page == "settings" {
@@ -194,12 +204,19 @@ fn AllApps() -> Element {
 
 fn Settings() -> Element {
     let theme = STATE.read().theme.clone();
+    let look = STATE.read().look.clone();
     let shape = STATE.read().shape.clone();
     let accent = STATE.read().accent;
     let tiles = STATE.read().tiles.len();
     rsx! {
         div { class: "panel",
             h1 { "Settings" }
+            p { class: "muted", "Look" }
+            div { class: "row",
+                look_btn { id: "metro", label: "Metro", current: look.clone() }
+                look_btn { id: "aero", label: "Aero", current: look.clone() }
+            }
+            p { class: "muted", "Aero is see-through Vista glass on the tiles. Metro is the flat Start screen." }
             p { class: "muted", "Theme" }
             div { class: "row",
                 theme_btn { id: "dark", label: "Dark", current: theme.clone() }
@@ -244,6 +261,16 @@ fn theme_btn(id: &'static str, label: &'static str, current: String) -> Element 
     rsx! {
         button {
             onclick: move |_| STATE.write().theme = id.to_string(),
+            if current == id { "● {label}" } else { "{label}" }
+        }
+    }
+}
+
+#[component]
+fn look_btn(id: &'static str, label: &'static str, current: String) -> Element {
+    rsx! {
+        button {
+            onclick: move |_| STATE.write().look = id.to_string(),
             if current == id { "● {label}" } else { "{label}" }
         }
     }

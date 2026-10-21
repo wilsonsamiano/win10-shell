@@ -25,7 +25,7 @@ This is public beta 0.1.0. The Android launcher you already use stays in its own
 
 Desktop builds use the platform webview, so the binary stays small and uses the GPU the system already has. Release builds use thin LTO, one codegen unit, opt-level 3, stripped symbols, and abort-on-panic.
 
-Linux needs `libwebkit2gtk-4.1-dev` and `libgtk-3-dev` to compile, and WebKitGTK 4.1 to run. Windows needs the WebView2 runtime, which is already on Windows 11. macOS uses the system WebKit. The macOS binary is unsigned: right-click it and choose Open the first time.
+Linux needs `libwebkit2gtk-4.1-dev`, `libgtk-3-dev`, and `libxdo-dev` to compile, and WebKitGTK 4.1 plus `libxdo` to run. Windows needs the WebView2 runtime, which is already on Windows 11. macOS uses the system WebKit. The macOS binary is unsigned: right-click it and choose Open the first time.
 
 ### PWA
 

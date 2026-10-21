@@ -19,7 +19,7 @@ This is public beta 0.1.0. The Android launcher you already use stays in its own
 | Linux x64 | Native window, system WebKitGTK 4.1 | `win10-shell-linux-x64` |
 | macOS Apple silicon | Native window, system WebKit | `win10-shell-macos-arm64` |
 | Windows x64 | Native window, WebView2 | `win10-shell-windows-x64.exe` |
-| PWA | Installable browser app, service worker | [GitHub Pages](https://wilsonsamiano.github.io/win10-shell/) and `win10-shell-pwa.zip` |
+| PWA | Installable browser app, service worker | `win10-shell-pwa.zip` on the release. Unzip it and serve the folder over https |
 | Android | Native shell. The manifest includes `HOME`, so Android can offer it as the launcher | build below |
 | iOS | Native shell app. iOS does not allow replacing the system home screen | build below |
 
@@ -38,7 +38,7 @@ cp web/index.html web/manifest.webmanifest web/sw.js web/icon.svg web/icon-192.p
 
 `wasm-bindgen-cli` must match the `wasm-bindgen` version in `Cargo.lock` (0.2.129 for this beta). Serve `dist/` over https, then install it from the browser. The service worker caches this version and drops the old cache when the cache name changes.
 
-The hosted beta is https://wilsonsamiano.github.io/win10-shell/
+GitHub Pages will also host it at https://wilsonsamiano.github.io/win10-shell/ after Pages is switched on once: [Settings → Pages](https://github.com/wilsonsamiano/win10-shell/settings/pages), source **GitHub Actions**. The release workflow already uploads the site. The token used here cannot flip that switch.
 
 ### Android and iOS
 

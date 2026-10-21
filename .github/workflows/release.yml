@@ -87,7 +87,7 @@ jobs:
             - Linux x64: `win10-shell-linux-x64` (needs WebKitGTK 4.1)
             - Windows x64: `win10-shell-windows-x64.exe` (WebView2, already on Windows 11)
             - macOS Apple silicon: `win10-shell-macos-arm64` (first launch: right-click, Open)
-            - PWA: install from https://wilsonsamiano.github.io/win10-shell/ or unzip `win10-shell-pwa.zip`
+            - PWA: unzip `win10-shell-pwa.zip` and serve it over https. After Pages is set to GitHub Actions, it is also at https://wilsonsamiano.github.io/win10-shell/
             - Android and iOS: build with the `mobile` feature. Android can be the home app. iOS cannot replace the system home screen.
 
             In the app, Settings → Check for updates. Install the new build over the one you have.
